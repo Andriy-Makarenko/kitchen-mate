@@ -14,17 +14,33 @@
     <input type="submit" value="🔎" class="btn btn-secondary">
 
   </form>
-
+  <table class="table">
+    <tr>
+      <th>id</th>
+      <th>Dish</th>
+      <th>Dish price</th>
+    </tr>
   {% if dish_list %}
-    <ul>
+
       {% for dish in dish_list %}
-        <li>
+        <tr>
+        <td>
           <a href="{% url "restaurant:dish-detail" pk=dish.id %} ">{{ dish.id }}</a>
-          {{ dish.model }} ({{ dish.manufacturer.name }})
-        </li>
+        </td>
+        <td>
+          {{ dish.name }}
+        </td>
+        <td>
+          {{ dish.price }}
+        </td>
+        </tr>
+
       {% endfor %}
-    </ul>
+    </table>
   {% else %}
+
+  <
+
     <p>There are no dishes at the kitchen</p>
   {% endif %}
 {% endblock %}
