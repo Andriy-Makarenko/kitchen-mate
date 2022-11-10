@@ -14,7 +14,7 @@ from .views import (
     toggle_assign_to_dish,
     CookListView,
     CookDetailView,
-    DriverCreateView,
+    CookCreateView,
     DriverLicenseUpdateView,
     DriverDeleteView,
 )
@@ -57,6 +57,7 @@ urlpatterns = [
         CookDetailView.as_view(),
         name="cook-detail"
     ),
+    path("cooks/create/", CookCreateView.as_view(), name="cook-create"),
 ]
 
 app_name = "restaurant"
