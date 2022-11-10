@@ -12,7 +12,7 @@ from .forms import (
     CarForm,
     DriverSearchForm,
     CarSearchForm,
-    ManufacturerSearchForm,
+    DishTypeSearchForm,
 )
 
 
@@ -35,3 +35,31 @@ def index(request):
     }
 
     return render(request, "restaurant/index.html", context=context)
+
+
+class DishTypeListView(LoginRequiredMixin, generic.ListView):
+    model = DishType
+    context_object_name = "dish_type_list"
+    template_name = "restaurant/dish_type_list.html"
+    queryset = DishType.objects.all()
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(DishTypeListView, self).get_context_data(**kwargs)
+
+        search_title = self.request.GET.get("search_title")
+
+        context["search_form"] = DishTypeSearchForm(initial={
+            "search_title": search_title
+        })
+
+        return context
+
+    def get_queryset(self):
+        dish_type = self.request.GET.get("search_title")
+
+        if dish_type:
+            return self.queryset.filter(name__icontains=dish_type)
+
+        return self.queryset
+
