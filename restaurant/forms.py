@@ -39,3 +39,12 @@ def validate_experience(
         raise ValidationError("We need experience chef on the kitchen")
 
     return years_of_experience
+
+
+class CookExperienceUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Cook
+        fields = ["years_of_experience"]
+
+    def clean_license_number(self):
+        return validate_experience(self.cleaned_data["years_of_experience"])
