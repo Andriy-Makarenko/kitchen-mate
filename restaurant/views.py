@@ -7,10 +7,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 
 from .models import Cook, Dish, DishType
 from .forms import (
-    DriverCreationForm,
-    DriverLicenseUpdateForm,
+    CookCreationForm,
+    CookLicenseUpdateForm,
     DishForm,
-    DriverSearchForm,
+    CookSearchForm,
     DishSearchForm,
     DishTypeSearchForm,
 )
@@ -131,13 +131,36 @@ class DishDeleteView(LoginRequiredMixin, generic.DeleteView):
 def toggle_assign_to_dish(request, pk):
     cook = Cook.objects.get(id=request.user.id)
     if (
-        Dish.objects.get(id=pk) in cook.cars.all()
-    ):  # probably could check if car exists
+        Dish.objects.get(id=pk) in cook.dishes.all()
+    ):  # probably could check if dish exists
         cook.dishes.remove(pk)
     else:
         cook.dishes.add(pk)
     return HttpResponseRedirect(reverse_lazy("restaurant:dish-detail", args=[pk]))
 
 
+class CookListView(LoginRequiredMixin, generic.ListView):
+    model = Cook
+    queryset = Cook.objects.all()
+    paginate_by = 5
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(CookListView, self).get_context_data(**kwargs)
+
+        search_title = self.request.GET.get("search_title")
+
+        context["search_form"] = CookSearchForm(initial={
+            "search_title": search_title
+        })
+
+        return context
+
+    def get_queryset(self):
+        username = self.request.GET.get("search_title")
+
+        if username:
+            return self.queryset.filter(username__icontains=username)
+
+        return self.queryset
 
 
