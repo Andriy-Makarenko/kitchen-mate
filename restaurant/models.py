@@ -30,6 +30,7 @@ class Dish(models.Model):
     cooks = models.ManyToManyField(Cook, related_name="dishes")
 
     class Meta:
+        ordering = ["name"]
         verbose_name = "dish"
         verbose_name_plural = "dishes"
 
