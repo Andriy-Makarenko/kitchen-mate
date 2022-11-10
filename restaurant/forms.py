@@ -68,3 +68,10 @@ class DishSearchForm(forms.Form):
     )
 
 
+class DishTypeSearchForm(forms.Form):
+    search_title = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Enter dish type name"}),
+    )
