@@ -13,7 +13,7 @@ from .views import (
     DriverLicenseUpdateView,
     DriverDeleteView,
     DishTypeListView,
-    ManufacturerCreateView,
+    DishTypeCreateView,
     ManufacturerUpdateView,
     ManufacturerDeleteView,
     toggle_assign_to_car,
@@ -25,6 +25,11 @@ urlpatterns = [
         "dish_types/",
         DishTypeListView.as_view(),
         name="dish-type-list",
+    ),
+    path(
+        "dish_types/create/",
+        DishTypeCreateView.as_view(),
+        name="dish-type-create",
     ),
 
 
