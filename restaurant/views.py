@@ -9,9 +9,9 @@ from .models import Cook, Dish, DishType
 from .forms import (
     DriverCreationForm,
     DriverLicenseUpdateForm,
-    CarForm,
+    DishForm,
     DriverSearchForm,
-    CarSearchForm,
+    DishSearchForm,
     DishTypeSearchForm,
 )
 
@@ -79,3 +79,29 @@ class DishTypeUpdateView(LoginRequiredMixin, generic.UpdateView):
 class DishTypeDeleteView(LoginRequiredMixin, generic.DeleteView):
     model = DishType
     success_url = reverse_lazy("restaurant:dish-type-list")
+
+
+class DishListView(LoginRequiredMixin, generic.ListView):
+    model = Dish
+    paginate_by = 5
+    queryset = Dish.objects.all().select_related("manufacturer")
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super(DishListView, self).get_context_data(**kwargs)
+
+        search_title = self.request.GET.get("search_title")
+
+        context["search_form"] = DishSearchForm(initial={
+            "search_title": search_title
+        })
+
+        return context
+
+    def get_queryset(self):
+        model = self.request.GET.get("search_title")
+
+        if model:
+            return self.queryset.filter(model__icontains=model)
+
+        return self.queryset
+
