@@ -105,3 +105,8 @@ class DishListView(LoginRequiredMixin, generic.ListView):
 
         return self.queryset
 
+
+class DishDetailView(LoginRequiredMixin, generic.DetailView):
+    model = Dish
+
+
