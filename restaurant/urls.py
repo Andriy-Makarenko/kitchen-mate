@@ -7,7 +7,7 @@ from .views import (
     DishTypeUpdateView,
     DishTypeDeleteView,
     DishListView,
-    CarDetailView,
+    DishDetailView,
     CarCreateView,
     CarUpdateView,
     CarDeleteView,
@@ -41,7 +41,8 @@ urlpatterns = [
         DishTypeDeleteView.as_view(),
         name="dish-type-delete",
     ),
-    path("dishes/", DishTypeListView.as_view(), name="dish-list"),
+    path("dishes/", DishListView.as_view(), name="dish-list"),
+    path("dishes/<int:pk>/", DishDetailView.as_view(), name="dish-detail"),
 ]
 
 app_name = "restaurant"
