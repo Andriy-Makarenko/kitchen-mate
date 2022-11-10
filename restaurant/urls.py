@@ -11,12 +11,12 @@ from .views import (
     DishCreateView,
     DishUpdateView,
     DishDeleteView,
+    toggle_assign_to_dish,
     DriverListView,
     DriverDetailView,
     DriverCreateView,
     DriverLicenseUpdateView,
     DriverDeleteView,
-    toggle_assign_to_dish,
 )
 
 urlpatterns = [
