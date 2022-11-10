@@ -48,3 +48,13 @@ class CookExperienceUpdateForm(forms.ModelForm):
 
     def clean_license_number(self):
         return validate_experience(self.cleaned_data["years_of_experience"])
+
+
+class CookSearchForm(forms.Form):
+    search_title = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(attrs={"placeholder": "Enter Username"}),
+    )
+
