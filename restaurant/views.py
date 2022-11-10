@@ -63,3 +63,8 @@ class DishTypeListView(LoginRequiredMixin, generic.ListView):
 
         return self.queryset
 
+
+class DishTypeCreateView(LoginRequiredMixin, generic.CreateView):
+    model = DishType
+    fields = "__all__"
+    success_url = reverse_lazy("restaurant:dish-type-list")
