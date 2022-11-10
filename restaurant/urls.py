@@ -16,7 +16,7 @@ from .views import (
     CookDetailView,
     CookCreateView,
     CookExperienceUpdateView,
-    DriverDeleteView,
+    CookDeleteView,
 )
 
 urlpatterns = [
@@ -62,6 +62,11 @@ urlpatterns = [
         "cooks/<int:pk>/update/",
         CookExperienceUpdateView.as_view(),
         name="cook-update",
+    ),
+    path(
+        "cooks/<int:pk>/delete/",
+        CookDeleteView.as_view(),
+        name="cook-delete",
     ),
 ]
 
