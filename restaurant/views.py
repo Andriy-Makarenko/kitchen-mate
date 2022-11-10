@@ -101,7 +101,7 @@ class DishListView(LoginRequiredMixin, generic.ListView):
         model = self.request.GET.get("search_title")
 
         if model:
-            return self.queryset.filter(model__icontains=model)
+            return self.queryset.filter(name__icontains=model)
 
         return self.queryset
 

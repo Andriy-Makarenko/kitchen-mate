@@ -13,7 +13,7 @@
   </h1>
   <p>Dish type: ({{ dish.dish_type.name }})</p>
   <h1>
-    Dishes types
+    Dishes cooks
 
     {% if dish in user.dishes.all %}
       <a href="{% url 'restaurant:toggle-dish-assign' pk=dish.id %}" class="btn btn-danger link-to-page">
