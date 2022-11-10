@@ -16,3 +16,16 @@ class DishForm(forms.ModelForm):
         model = Dish
         fields = "__all__"
 
+
+class CookCreationForm(UserCreationForm):
+    class Meta(UserCreationForm.Meta):
+        model = Cook
+        fields = UserCreationForm.Meta.fields + (
+            "years_of_experience",
+            "first_name",
+            "last_name",
+        )
+
+    def clean_license_number(self):  # this logic is optional, but possible
+        return validate_experience(self.cleaned_data["years_of_experience"])
+
