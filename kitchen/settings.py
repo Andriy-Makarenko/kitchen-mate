@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = "kitchen.Cook"
+AUTH_USER_MODEL = "restaurant.Cook"
 
 LOGIN_REDIRECT_URL = "/"
 
