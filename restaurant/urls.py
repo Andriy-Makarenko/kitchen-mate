@@ -2,6 +2,10 @@ from django.urls import path
 
 from .views import (
     index,
+    DishTypeListView,
+    DishTypeCreateView,
+    DishTypeUpdateView,
+    DishTypeDeleteView,
     CarListView,
     CarDetailView,
     CarCreateView,
@@ -12,10 +16,6 @@ from .views import (
     DriverCreateView,
     DriverLicenseUpdateView,
     DriverDeleteView,
-    DishTypeListView,
-    DishTypeCreateView,
-    DishTypeUpdateView,
-    DishTyperDeleteView,
     toggle_assign_to_car,
 )
 
