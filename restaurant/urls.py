@@ -12,7 +12,7 @@ from .views import (
     DriverCreateView,
     DriverLicenseUpdateView,
     DriverDeleteView,
-    ManufacturerListView,
+    DishTypeListView,
     ManufacturerCreateView,
     ManufacturerUpdateView,
     ManufacturerDeleteView,
@@ -21,3 +21,11 @@ from .views import (
 
 urlpatterns = [
     path("", index, name="index"),
+    path(
+        "dish_types/",
+        DishTypeListView.as_view(),
+        name="dish-type-list",
+    ),
+
+
+app_name = "restaurant"
