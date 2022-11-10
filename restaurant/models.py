@@ -9,7 +9,7 @@ class DishType(models.Model):
     class Meta:
         ordering = ["name"]
         verbose_name = "dish type"
-        verbose_name_plural = "dish types"
+        verbose_name_plural = "dishes types"
 
 
 class Cook(AbstractUser):
