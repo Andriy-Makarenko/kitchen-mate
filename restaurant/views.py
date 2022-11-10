@@ -110,3 +110,7 @@ class DishDetailView(LoginRequiredMixin, generic.DetailView):
     model = Dish
 
 
+class DishCreateView(LoginRequiredMixin, generic.CreateView):
+    model = Dish
+    form_class = DishForm
+    success_url = reverse_lazy("taxi:car-list")
