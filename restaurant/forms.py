@@ -29,3 +29,13 @@ class CookCreationForm(UserCreationForm):
     def clean_license_number(self):  # this logic is optional, but possible
         return validate_experience(self.cleaned_data["years_of_experience"])
 
+
+def validate_experience(
+    years_of_experience,
+):  # regex validation is also possible here
+    if years_of_experience > 60:
+        raise ValidationError("Experience can not be more than 60 years")
+    if years_of_experience < 1:
+        raise ValidationError("We need experience chef on the kitchen")
+
+    return years_of_experience
