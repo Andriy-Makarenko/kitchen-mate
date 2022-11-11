@@ -16,3 +16,17 @@ class ModelsTests(TestCase):
             str(cook),
             f"{cook.username} ({cook.first_name} {cook.last_name})",
         )
+
+    def test_dish_str(self):
+        dish_type = (
+            DishType.objects.create(name="test")
+        )
+        dish = (
+            Dish.objects.create(
+                name="test_name",
+                dish_type=dish_type,
+                price=20,
+            )
+        )
+
+        self.assertEqual(str(dish), dish.name)
