@@ -6,6 +6,11 @@ Django project for managing work on restaurants kitchen
 
 [Kitchen project deploy to Render](https://restaurant-kitchen.onrender.com/)
 
+## Test user for access website
+
+login: user
+password: user12345
+
 ## Installation
 
 Python 3 must be installed
